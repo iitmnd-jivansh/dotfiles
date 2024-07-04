@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Get memory usage
+memory_info=$(free -m | grep Mem)
+used_memory=$(echo $memory_info | awk '{print $3}')
+total_memory=$(echo $memory_info | awk '{print $2}')
+
+# Calculate percentage
+memory_percentage=$(( 100 * used_memory / total_memory ))
+
+# Print memory percentage
+echo "$used_memory M / $total_memory M ($memory_percentage%)"
+

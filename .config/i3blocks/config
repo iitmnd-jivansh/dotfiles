@@ -1,0 +1,22 @@
+[battery]
+label=BAT: 
+command=~/.local/bin/sb-battery 
+interval=10
+color=#689d6a
+
+[memory]
+label=MEM: 
+command=~/.local/bin/sb-memory 
+interval=10
+color=#d79921
+
+[volume]
+label=VOL: 
+command=~/.local/bin/sb-volume
+interval=1
+color=#b16286
+
+[time]
+command=date '+%Y-%m-%d %H:%M'
+interval=10
+color=#928374

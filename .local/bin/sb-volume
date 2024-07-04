@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Function to get volume level
+get_volume() {
+    # Use pactl to get the volume of the default sink
+    volume=$(pactl list sinks | grep 'Volume:' | head -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+    echo "$volume%"
+}
+
+# Function to check if muted
+is_muted() {
+    # Use pactl to check if the default sink is muted
+    muted=$(pactl list sinks | grep 'Mute:' | head -n 1 | awk '{print $2}')
+    if [ "$muted" = "yes" ]; then
+        echo "Muted"
+    fi
+}
+
+# Check if muted and adjust output accordingly
+if [ "$(is_muted)" = "Muted" ]; then
+    echo "$(is_muted)"
+else
+    echo "$(get_volume)"
+fi
